@@ -20,12 +20,88 @@
 
     <div class="full">
         <header>
-            <form class="signIn">
+            <!-- **************** Option 1 simple **************** -->
+            <!-- <form class="signIn">
                 <input type="text" id="emailInput" />
                 <input type="password" id="pwInput" />
-                <input type="submit" id="submit" />
+                <input type="submit" id="loginSubmit" />
+            </form> -->
+
+            <!-- **************** Option 2 signin form in header **************** -->
+
+            <!-- <form>
+                <div class="form-group row">
+                    <div class="col-sm-4 offset-sm-8 col-md-3 offset-md-9 col-lg-3 offset-lg-9 ">
+                        <button type="submit" class="btn" id="sIn">Sign in</button>
+                        <a class="btn" href="#" role="button" id="sUp">Sign up</a>
+                    </div>
+                </div>
             </form>
+
+            <form>
+                <div class="form-group row">
+                    <div class="col-sm-10 offset-sm-1 col-md-3 offset-md-9">
+                        <input type="text" class="form-control" id="userN" placeholder="Username">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 offset-sm-1 col-md-3 offset-md-9">
+                        <input type="password" class="form-control" id="pW" placeholder="Password">
+                    </div>
+                </div>
+
+                <input type="submit" id="submit" />
+
+            </form>
+            <form>
+                <div class="form-group row">
+                    <div class="col-sm-4 offset-sm-8 col-md-3 offset-md-9">
+                        <button type="submit" class="btn btn-success" di="confirm">Confirm</button>
+                        <button type="submit" class="btn btn-secondary" id="cancel">Cancel</button>
+                    </div>
+                </div>
+            </form> -->
+
+            <!-- **************** Option 2 signin form in header **************** -->
+
+
+
+
+            <!-- **************** Option 3 signin button with drop down ****************-->
+            <div class="btn-group row">
+                <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="sIn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Sign In
+                </button>
+
+
+                <button class="btn btn-secondary btn-lg " href="#" type="button" id="sUp">
+                    Sign Up
+                </button>
+
+                <div class="dropdown-menu">
+                    <form>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="userN" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <input type="password" class="form-control" id="pW" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-success" di="confirm">Confirm</button>
+                                <button type="submit" class="btn btn-secondary" id="cancel">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </header>
+        <!-- **************** Option 3 signin button with drop down ****************-->
         <main>
             <div class="container">
                 <div class="row mt-3">
@@ -47,6 +123,7 @@
             </div>
 
         </main>
+        <!-- **************** Main ****************-->
 
 
     </div>
@@ -56,6 +133,9 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <!--------------JS from Bootstrap------------------------->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
