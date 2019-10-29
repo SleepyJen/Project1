@@ -1,0 +1,57 @@
+body{
+    background-image: url('https://image.freepik.com/free-photo/wooden-table-with-view-blurred-beverages-bar-backdrop_43029-507.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.full{
+    height:100vh;
+} 
+
+
+header{
+    height:10vh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+main{
+    height:80vh;
+
+}
+h1{
+    font-family: 'Playfair Display SC', serif;
+    color:wheat;
+    font-size: 80px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.log{
+    width: 100%;
+    height: 30vh;
+}
+
+.search{
+    width: 100%;
+    height: 50vh;
+    display:flex;
+    justify-content: center;
+}
+
+.cardBody{
+    width: 50%;
+    margin: auto;
+    background-color: rgb(83, 53, 33);
+    color:  rgba(150, 115, 92, 0.849);;
+
+
+}
+
+footer{
+    height: 10vh;
+}
