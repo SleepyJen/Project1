@@ -18,38 +18,39 @@
 
 <body>
 
-    <div class="full">
-        <header>
-            <form class="signIn">
-                <input type="text" id="emailInput" />
-                <input type="password" id="pwInput" />
-                <input type="submit" id="submit" />
-            </form>
-        </header>
-        <main>
-            <div class="container">
-                <div class="row mt-3">
-                    <div class="col-sm-12 text-center">
-                        <div class="text-center">
-                            <div class="logo text-center">
-                                <h1>Brew Masters</h1>
+    <main>
+        <div class="container">
+            <div class="row justify-content-md-center mt-5">
+                <div class="col-md-8 col-sm-12">
+                    <div class="row">
+                        <div class="container">
+                            <div class="card text-center">
+                                <h5 class="card-header verifyHearder">
+                                    Welcome to Brew Masters!
+                                </h5>
+                                <div class="card-body verifyCard">
+                                    <h5 class="card-title verify">Before proceeding, verify you are over 21 years
+                                        old
+                                    </h5>
+                                    <a href="index.html" class="btn btn-success btn-lg my-3 over21">Yes, I am! Take
+                                        me
+                                        to
+                                        your
+                                        site.</a>
+                                    <a href="https://www.cdc.gov/alcohol/fact-sheets/minimum-legal-drinking-age.htm"
+                                        class="btn btn-danger btn-lg my-3 under21">No, I will come back when I'm
+                                        older.</a>
+
+                                </div>
+                                <div class="card-footer verifyFooter">
+                                    Thanks for visiting, please drink resposibly!
+                                </div>
+                                <div class="copyright"> &copy; Brew Masters 2019</div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class=search>
-                <form id="searchform">
-                    <input type="text" id="textInput" />
-                    <input type="submit" id="submitButton" />
-
-                </form>
-            </div>
-
-        </main>
-
-
-    </div>
+    </main>
     <!---------------- Jquery ----------------------->
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
