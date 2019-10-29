@@ -15,15 +15,15 @@ header{
     width: 100%;
     display: flex;
     justify-content: flex-end;
-
 }
+
 main{
     height:80vh;
-
 }
+
 h1{
     font-family: 'Playfair Display SC', serif;
-    color:wheat;
+    color:#f5deb3;
     font-size: 80px;
     display:flex;
     justify-content: center;
@@ -47,10 +47,39 @@ h1{
     margin: auto;
     background-color: rgb(83, 53, 33);
     color:  rgba(150, 115, 92, 0.849);;
-
-
 }
 
 footer{
     height: 10vh;
 }
+
+/* start of css for text verification card */
+
+.verifyHearder{
+    font-size: 60px; 
+}
+.verify{
+    font-size: 35px;
+    color: #bb8218;
+}
+
+.verifyCard{
+    font-family: 'Playfair Display SC', serif;
+    background-color: #f5deb3;
+}
+
+.verifyHearder, .verifyFooter, .copyright{
+    font-family: 'Playfair Display SC', serif;
+    background-color:  #bb8218;   
+    color:#f5deb3;
+}
+
+.over21, .under21{
+    color: #f5deb3;
+}
+
+.over21:hover, .under21:hover{
+transform: translate(-2px, -5px);
+color: #f5deb3;
+}
+/* end of css for text verification card */
