@@ -11,12 +11,12 @@ body{
 } 
 
 header{
-    height:10vh;
     width: 100%;
     display: flex;
     justify-content: flex-end;
-
 }
+
+
 main{
     height:80vh;
 
