@@ -82,3 +82,22 @@ transform: translate(-2px, -5px);
 color: #f5deb3;
 }
 /* end of css for text verification card */
+
+/* start of css for signup card */
+.signUpForm{
+    background-color: #f5deb3;
+}
+
+.formField {
+    color: #bb8218;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 20px;
+    text-align: center;
+}
+#signUp{
+    background-color: #bb8218; 
+    color: #f5deb3;
+    font-family: 'Playfair Display SC', serif;
+
+}
+/* end of css fsignup card */
