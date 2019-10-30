@@ -36,16 +36,12 @@ h1{
     align-items: center;
 }
 
-h5{
-    font-family: 'Playfair Display SC', serif;
-    color:#f5deb3;
-    font-size: 20px;
-    display:flex;
-    justify-content: left;
-    align-items: center;
+
+.verified{
+    height: 80%;
 }
 
-.log{
+.logo{
     width: 100%;
     height: 30vh;
 }
@@ -115,5 +111,9 @@ color: #f5deb3;
     color: #f5deb3;
     font-family: 'Playfair Display SC', serif;
 
+}
+
+.headerBtnContainer{
+    padding: 10px;
 }
 /* end of css signup card */
