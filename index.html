@@ -1,3 +1,4 @@
+git
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,23 +18,57 @@
 </head>
 
 <body>
-    <h1>laura test the branch</h1>
+    <!-- **************** Option 3 signin button with drop down ****************-->
+
     <div class="full">
         <header>
-            <form class="signIn">
-                <input type="text" id="emailInput" />
-                <input type="password" id="pwInput" />
-                <input type="submit" id="submit" />
-                <h1>New stuff for the codebase</h1>
-            </form>
+            <div class="headerBtnContainer">
+                <div>
+                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="sIn"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sign In
+                    </button>
+                    <button class="btn btn-secondary btn-lg " href="#" type="button" id="sUp">
+                        Sign Up
+                    </button>
+                    <div class="dropdown-menu">
+                        <form onsubmit="return validatelog()" action="welcome.html">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" id="userN" placeholder="Username">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input type="password" class="form-control" id="pW" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-success" id="confirm">Confirm</button>
+                                    <button type="submit" class="btn btn-secondary" id="cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </header>
-
+        <!-- **************** Main ****************-->
         <main>
-            <div class="log">
-                <h1>Drink Master</h1>
+            <div class="container">
+                <div class="row mt-3">
+                    <div class="col-sm-12 text-center">
+                        <div class="text-center">
+                            <div class="logo text-center">
+                                <h1>Brew Masters</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class=search>
-                <form id="searchform">
+                <form onsubmit='return validate()' action='search.html' id="searchform">
                     <input type="text" id="textInput" />
                     <input type="submit" id="submitButton" />
 
@@ -41,6 +76,7 @@
             </div>
 
         </main>
+        <!-- **************** Main ****************-->
 
 
     </div>
@@ -50,6 +86,9 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <!--------------JS from Bootstrap------------------------->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>

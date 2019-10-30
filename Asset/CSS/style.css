@@ -9,24 +9,39 @@ body{
 .full{
     height:100vh;
 } 
+.btn{
+    background-color: rgb(94, 52, 25);
+    color:#f5deb3;
+}
+.dropdown-menu{
+    padding: 7px;
+}
 
 header{
-    height:10vh;
     width: 100%;
     display: flex;
     justify-content: flex-end;
-
 }
+
 main{
     height:80vh;
-
 }
+
 h1{
     font-family: 'Playfair Display SC', serif;
-    color:wheat;
+    color:#f5deb3;
     font-size: 80px;
     display:flex;
     justify-content: center;
+    align-items: center;
+}
+
+h5{
+    font-family: 'Playfair Display SC', serif;
+    color:#f5deb3;
+    font-size: 20px;
+    display:flex;
+    justify-content: left;
     align-items: center;
 }
 
@@ -47,10 +62,58 @@ h1{
     margin: auto;
     background-color: rgb(83, 53, 33);
     color:  rgba(150, 115, 92, 0.849);;
-
-
 }
 
 footer{
     height: 10vh;
 }
+
+/* start of css for text verification card */
+
+.verifyHearder{
+    font-size: 60px; 
+}
+.verify{
+    font-size: 35px;
+    color: #bb8218;
+}
+
+.verifyCard{
+    font-family: 'Playfair Display SC', serif;
+    background-color: #f5deb3;
+}
+
+.verifyHearder, .verifyFooter, .copyright{
+    font-family: 'Playfair Display SC', serif;
+    background-color:  #bb8218;   
+    color:#f5deb3;
+}
+
+.over21, .under21{
+    color: #f5deb3;
+}
+
+.over21:hover, .under21:hover, #register:hover{
+transform: translate(-2px, -5px);
+color: #f5deb3;
+}
+/* end of css for text verification card */
+
+/* start of css for signup card */
+.signUpForm{
+    background-color: #f5deb3;
+}
+
+.formField {
+    color: #bb8218;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 20px;
+    text-align: center;
+}
+#register{
+    background-color: rgb(94, 52, 25);
+    color: #f5deb3;
+    font-family: 'Playfair Display SC', serif;
+
+}
+/* end of css signup card */
