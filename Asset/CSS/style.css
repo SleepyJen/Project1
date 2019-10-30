@@ -107,4 +107,8 @@ color: #f5deb3;
     font-family: 'Playfair Display SC', serif;
 
 }
+
+.headerBtnContainer{
+    padding: 10px;
+}
 /* end of css signup card */
