@@ -11,7 +11,7 @@ body{
 } 
 .btn{
     background-color: rgb(94, 52, 25);
-    color: wheat;
+    color:#f5deb3;
 }
 .dropdown-menu{
     padding: 7px;
@@ -84,7 +84,7 @@ footer{
     color: #f5deb3;
 }
 
-.over21:hover, .under21:hover{
+.over21:hover, .under21:hover, #register:hover{
 transform: translate(-2px, -5px);
 color: #f5deb3;
 }
@@ -101,10 +101,10 @@ color: #f5deb3;
     font-size: 20px;
     text-align: center;
 }
-#signUp{
-    background-color: #bb8218; 
+#register{
+    background-color: rgb(94, 52, 25);
     color: #f5deb3;
     font-family: 'Playfair Display SC', serif;
 
 }
-/* end of css fsignup card */
+/* end of css signup card */
