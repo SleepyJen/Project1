@@ -11,12 +11,36 @@ $(document).ready(function () {
 
     firebase.initializeApp(firebaseConfig);
     var searchBtn = $('#submitButton');
+    var signIn = false;
+
+    $('.search').hide();
+    $('#setup').hide();
+
+    $('.over21').on('click', function (e) {
+        e.preventDefault();
+        $('#verification').hide();
+        $('#setup').show();
+        $('.search').show();
+    });
 
     searchBtn.on('click', function (e) {
         e.preventDefault();
         let text = $('#textInput').val();
-        searchBtn.attr('href', 'search.html');
         $('#textInput').val('');
-        console.log(text);
+
+        if (signIn) {
+            window.location.href = ('search.html');
+            console.log(text);
+
+        } else {
+            $('#searchform').hide();
+            $('.search').append('<h1>Please Log In first =)</h1>');
+        }
     });
+
+    $('#sUp').on('click', function () {
+        window.location.href = ('signUp.html');
+    });
+
+
 });
