@@ -34,6 +34,8 @@ $(document).ready(function () {
 
     $('#register').on('click', function (e) {
         e.preventDefault();
+        window.location.href = ('index.html');
+        main();
     });
 
     function main() {
@@ -67,7 +69,8 @@ $(document).ready(function () {
         const sn = $('#userN').val();
         const pw = $("#pW", $("#loginForm")).val();
 
-        auth.signInWithEmailAndPassword(sn, pw);
-
+        auth.signInWithEmailAndPassword(sn, pw).catch(err => {
+            console.log(err);
+        })
     });
 });
