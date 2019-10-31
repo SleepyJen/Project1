@@ -42,6 +42,7 @@ $(document).ready(function () {
         let password = $('#password').val();
 
 
+
     });
 
     function main() {
@@ -75,7 +76,13 @@ $(document).ready(function () {
         const sn = $('#userN').val();
         const pw = $("#pW", $("#loginForm")).val();
 
-        auth.signInWithEmailAndPassword(sn, pw);
-
+        auth.signInWithEmailAndPassword(sn, pw).catch(err => {
+            console.log(err);
+        })
+    });
+    $('#submitButton').on('click',function () {
+        window.location.href=('search.html');
+        
     });
 });
+
