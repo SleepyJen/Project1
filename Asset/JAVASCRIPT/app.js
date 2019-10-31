@@ -10,6 +10,10 @@ $(document).ready(function () {
     };
 
     firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+    const db = firebase.database();
+
     var searchBtn = $('#submitButton');
     var signIn = false;
 
@@ -60,12 +64,10 @@ $(document).ready(function () {
 
     $('#confirm').on('click', function (e) {
         e.preventDefault();
-        let sn = $('#userN').val();
-        let pw = $("#pW", $("#loginForm")).val();
+        const sn = $('#userN').val();
+        const pw = $("#pW", $("#loginForm")).val();
 
-        console.log(sn);
-        console.log(pw);
-
+        auth.signInWithEmailAndPassword(sn, pw);
 
     });
 });
