@@ -13,31 +13,45 @@ $(document).ready(function () {
     var searchBtn = $('#submitButton');
     var signIn = false;
 
-    $('.search').hide();
-    $('#setup').hide();
-    $('.headerBtnContainer').hide();
+    if (localStorage.getItem('data') != 'signedup') {
+        $('.search').hide();
+        $('#setup').hide();
+        $('.headerBtnContainer').hide();
+    } else {
+        $('#verification').hide();
+    }
 
     $('.over21').on('click', function (e) {
         e.preventDefault();
+        verify = true;
+        localStorage.setItem('data', 'signedup');
+        main();
+    });
+
+    $('#register').on('click', function (e) {
+        e.preventDefault();
+    });
+
+    function main() {
         $('#verification').hide();
         $('#setup').show();
         $('.search').show();
         $('.headerBtnContainer').show();
-    });
+    }
 
     searchBtn.on('click', function (e) {
         e.preventDefault();
         let text = $('#textInput').val();
         $('#textInput').val('');
 
-        if (signIn) {
-            window.location.href = ('search.html');
-            console.log(text);
+        // if (signIn) {
+        //     window.location.href = ('search.html');
+        //     console.log(text);
 
-        } else {
-            $('#searchform').hide();
-            $('.search').append('<h1>Please Log In first =)</h1>');
-        }
+        // } else {
+        //     $('#searchform').hide();
+        //     $('.search').append('<h1>Please Log In first =)</h1>');
+        // }
     });
 
     $('#sUp').on('click', function () {
