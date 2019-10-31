@@ -34,6 +34,14 @@ $(document).ready(function () {
 
     $('#register').on('click', function (e) {
         e.preventDefault();
+        let firstName = $('#firstName').val();
+        let lastName = $('#lastName').val();
+        let dob = $('#dob').val();
+        console.log(dob);
+        let email = $('#email').val();
+        let password = $('#password').val();
+
+
     });
 
     function main() {
