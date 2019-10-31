@@ -58,4 +58,14 @@ $(document).ready(function () {
         window.location.href = ('signUp.html');
     });
 
+    $('#confirm').on('click', function (e) {
+        e.preventDefault();
+        let sn = $('#userN').val();
+        let pw = $("#pW", $("#loginForm")).val();
+
+        console.log(sn);
+        console.log(pw);
+
+
+    });
 });
