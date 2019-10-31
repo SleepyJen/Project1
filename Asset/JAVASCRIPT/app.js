@@ -38,18 +38,19 @@ $(document).ready(function () {
         let lastName = $('#lastName').val();
         let dob = $('#dob').val();
         let email = $('#inputEmail').val();
-        const pw = $("#pwSignUp", $(".formField")).val();;
+        const password = $("#pwSignUp", $(".formField2")).val();
 
-        if (firstName != null && lastName != null && email != null && pw != null && dob != null) {
-            db.ref(lastName + firstName + dob.substring(8, 10)).push({
+
+        if (firstName != null && lastName != null && email != null && password != null && dob != null) {
+            db.ref(lastName + firstName + dob.substring(8, 10)).set({
                 fName: firstName,
                 lName: lastName,
                 DoB: dob
             });
-
+            auth.createUserWithEmailAndPassword(email, password).then(cred => {
+                window.location.href = ('index.html');
+            });
         }
-        auth.createUserWithEmailAndPassword(email, pw);
-        window.location.href = ('index.html');
     });
 
     function main() {
@@ -77,8 +78,31 @@ $(document).ready(function () {
 
         auth.signInWithEmailAndPassword(sn, pw).catch(err => {
             console.log(err);
-        })
+        });
+
     });
+
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            console.log("signed in");
+            $('#sIn').hide();
+            $('#sUp').hide();
+            let welcome = $('<h2>').text("Welcome Back!");
+            welcome.attr('class', 'greeting');
+            $('.headerBtnContainer').append(welcome);
+        } else {
+            console.log("signed out");
+            $('#sIn').show();
+            $('#sUp').show();
+            $('.greeting').hide();
+        }
+    });
+
+    $('#lOut').on('click', function () {
+        auth.signOut();
+        window.location.href = ('index.html');
+    });
+
     $('#submitButton').on('click', function () {
         window.location.href = ('search.html');
 
