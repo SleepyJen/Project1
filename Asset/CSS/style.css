@@ -5,7 +5,12 @@ body{
     height: 100%;
     width: 100%;
 }
-
+#sUp{
+    margin-right: 50px;
+}
+#sIn{
+    margin-right:10px;
+}
 .full{
     height:100vh;
 } 
