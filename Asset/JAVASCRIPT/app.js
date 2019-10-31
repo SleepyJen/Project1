@@ -15,7 +15,6 @@ $(document).ready(function () {
     const db = firebase.database();
 
     var searchBtn = $('#submitButton');
-    var signIn = false;
 
     if (localStorage.getItem('data') != 'signedup') {
         $('.search').hide();
@@ -27,22 +26,30 @@ $(document).ready(function () {
 
     $('.over21').on('click', function (e) {
         e.preventDefault();
-        verify = true;
         localStorage.setItem('data', 'signedup');
         main();
     });
 
+    // Creating User
     $('#register').on('click', function (e) {
         e.preventDefault();
+
         let firstName = $('#firstName').val();
         let lastName = $('#lastName').val();
         let dob = $('#dob').val();
-        console.log(dob);
-        let email = $('#email').val();
-        let password = $('#password').val();
+        let email = $('#inputEmail').val();
+        const pw = $("#pwSignUp", $(".formField")).val();;
 
+        if (firstName != null && lastName != null && email != null && pw != null && dob != null) {
+            db.ref(lastName + firstName + dob.substring(8, 10)).push({
+                fName: firstName,
+                lName: lastName,
+                DoB: dob
+            });
 
-
+        }
+        auth.createUserWithEmailAndPassword(email, pw);
+        window.location.href = ('index.html');
     });
 
     function main() {
@@ -57,14 +64,6 @@ $(document).ready(function () {
         let text = $('#textInput').val();
         $('#textInput').val('');
 
-        // if (signIn) {
-        //     window.location.href = ('search.html');
-        //     console.log(text);
-
-        // } else {
-        //     $('#searchform').hide();
-        //     $('.search').append('<h1>Please Log In first =)</h1>');
-        // }
     });
 
     $('#sUp').on('click', function () {
