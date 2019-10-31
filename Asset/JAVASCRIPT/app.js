@@ -73,9 +73,9 @@ $(document).ready(function () {
             console.log(err);
         })
     });
-    $('#submitButton').on('click',function () {
-        window.location.href=('search.html');
-        
+    $('#submitButton').on('click', function () {
+        window.location.href = ('search.html');
+
     });
 });
 
