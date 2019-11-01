@@ -110,7 +110,7 @@ color: #f5deb3;
     background-color: #f5deb3;
 }
 
-.formField {
+.formField, .formField2  {
     color: #bb8218;
     font-family: 'Playfair Display SC', serif;
     font-size: 20px;
