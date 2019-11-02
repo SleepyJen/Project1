@@ -16,18 +16,12 @@ $(document).ready(function () {
 
     var searchBtn = $('#submitButton');
     var text = '';
-    var logedIn = false;
 
     if (localStorage.getItem('data') != 'signedup') {
-        if (!logedIn) {
-            $('.headerBtnContainer').hide();
-            $('.headerBtnContainer2').hide();
-        } else {
-            $('.headerBtnContainer2').show();
-        }
+        $('.headerBtnContainer').show();
+        $('.headerBtnContainer2').hide();
     } else {
         $('#verification').hide();
-        $('.headerBtnContainer2').hide();
     }
 
     $('.over21').on('click', function (e) {
@@ -63,17 +57,12 @@ $(document).ready(function () {
     //End Create User ---------------------------------------------------------------------
 
     function main() {
-        if (!logedIn) {
-            $('#verification').hide();
-            $('#setup').show();
-            $('.search').show();
-            $('.headerBtnContainer').show();
-            $('.headerBtnContainer2').hide();
-        } else {
-            $('#verification').hide();
-            $('.headerBtnContainer2').show();
-        }
-
+        $('#verification').hide();
+        $('#setup').show();
+        $('.search').show();
+        $('.headerBtnContainer').show();
+        $('#verification').hide();
+        $('.headerBtnContainer2').show();
     }
 
     searchBtn.on('click', function (e) {
@@ -107,7 +96,7 @@ $(document).ready(function () {
             cardHolder.append(card);
             $('.cardBody').append(cardHolder);
         });
-
+        main();
     });
 
     $('#sUp').on('click', function () {
@@ -125,7 +114,6 @@ $(document).ready(function () {
             fail.attr('class', 'fail');
             $('.message').append(fail);
         });
-        logedIn = true;
         main();
     });
 
@@ -134,6 +122,8 @@ $(document).ready(function () {
             console.log("signed in");
             $('#sIn').hide();
             $('#sUp').hide();
+            $('#lOut').show();
+            $('.fail').hide();
             let welcome = $('<h2>').text("Welcome Back!");
             welcome.attr('class', 'greeting');
             $('.message').append(welcome);
@@ -141,13 +131,14 @@ $(document).ready(function () {
             console.log("signed out");
             $('#sIn').show();
             $('#sUp').show();
+            $('#lOut').hide();
             $('.greeting').hide();
         }
     });
 
     $('#lOut').on('click', function () {
         auth.signOut();
-        logedIn = false;
+        localStorage.setItem('signedIn', 'loggedOut');
         main();
     });
 
