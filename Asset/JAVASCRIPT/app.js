@@ -49,7 +49,7 @@ $(document).ready(function () {
                     DoB: dob
                 });
                 window.location.href = ('index.html');
-            }).catch(function (err) {
+            }).catch(function () {
                 alert("Sorry, Your Input Was Invalid, Try again!");
             });
         }
