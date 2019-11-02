@@ -88,11 +88,15 @@ $(document).ready(function () {
 
     function api_search(text, key, choice) {
         console.log(choice);
-
+        var url;
         if (text === "") {
             alert('Please Enter a City');
         }
-        var url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
+        if (choice === "Beer") {
+            url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
+        } else {
+            url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
+        }
 
         var settings = {
             "async": true,
@@ -119,7 +123,7 @@ $(document).ready(function () {
                     head.text(response[i].name);
                     info.html('Address: ' + response[i].street + '<br>' + response[i].state + ', ' +
                         response[i].postal_code + '<br>Phone Number: ' + response[i].phone +
-                        "<br>Website: " + response[i].website_url);
+                        "<br>Website: " + `<a href = ${response[i].website_url}>` + response[i].website_url);
 
                     card.append(head);
                     card.append(info);
