@@ -42,19 +42,17 @@ $(document).ready(function () {
 
 
         if (firstName != null && lastName != null && email != null && password != null && dob != null) {
-            db.ref(lastName + firstName + dob.substring(8, 10)).set({
-                fName: firstName,
-                lName: lastName,
-                DoB: dob
+            auth.createUserWithEmailAndPassword(email, password).then(cred => {
+                db.ref(lastName + firstName + dob.substring(8, 10)).set({
+                    fName: firstName,
+                    lName: lastName,
+                    DoB: dob
+                });
+                window.location.href = ('index.html');
+            }).catch(function (err) {
+                alert("Sorry, Your Input Was Invalid, Try again!");
             });
         }
-        auth.createUserWithEmailAndPassword(email, password).then(cred => {
-            window.location.href = ('index.html');
-        }).catch(function (err) {
-            console.log(err);
-
-        });
-
 
     });
 
