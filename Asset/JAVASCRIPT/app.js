@@ -47,10 +47,15 @@ $(document).ready(function () {
                 lName: lastName,
                 DoB: dob
             });
-            auth.createUserWithEmailAndPassword(email, password).then(cred => {
-                window.location.href = ('index.html');
-            });
         }
+        auth.createUserWithEmailAndPassword(email, password).then(cred => {
+            window.location.href = ('index.html');
+        }).catch(function (err) {
+            console.log(err);
+
+        });
+
+
     });
 
     function main() {
@@ -78,6 +83,9 @@ $(document).ready(function () {
 
         auth.signInWithEmailAndPassword(sn, pw).catch(err => {
             console.log(err);
+            let fail = $('<h2>').text('Sorry! ' + err.message);
+            fail.attr('class', 'greeting');
+            $('.message').append(fail);
         });
 
     });
@@ -89,7 +97,7 @@ $(document).ready(function () {
             $('#sUp').hide();
             let welcome = $('<h2>').text("Welcome Back!");
             welcome.attr('class', 'greeting');
-            $('.headerBtnContainer').append(welcome);
+            $('.message').append(welcome);
         } else {
             console.log("signed out");
             $('#sIn').show();
