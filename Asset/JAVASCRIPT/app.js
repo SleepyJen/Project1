@@ -30,14 +30,14 @@ $(document).ready(function () {
         main();
     });
 
-    $(document).on('click', '.dropdown-item', function(){
+    $(document).on('click', '.dropdown-item', function () {
         let text = $(this).attr('data');
         $('#Drink').html(text);
     });
 
 
     // Creating User ---------------------------------------------------------------------
-    $('#register').on('click', function (e) {
+    $('.register').on('click', function (e) {
         e.preventDefault();
 
         let firstName = $('#firstName').val();
@@ -46,19 +46,17 @@ $(document).ready(function () {
         let email = $('#inputEmail').val();
         const password = $("#pwSignUp", $(".formField2")).val();
 
-        if (firstName != null && lastName != null && email != null && password != null && dob != null) {
-            auth.createUserWithEmailAndPassword(email, password).then(cred => {
-                db.ref(lastName + firstName + dob.substring(8, 10)).set({
-                    fName: firstName,
-                    lName: lastName,
-                    DoB: dob,
-                    email: email
-                });
-                window.location.href = ('index.html');
-            }).catch(function () {
-                alert("Sorry, Your Input Was Invalid, Try again!");
+        auth.createUserWithEmailAndPassword(email, password).then(cred => {
+            db.ref(lastName + firstName + dob.substring(8, 10)).set({
+                fName: firstName,
+                lName: lastName,
+                DoB: dob,
+                email: email
             });
-        }
+            window.location.href = ('index.html');
+        }).catch(function () {
+            alert("Sorry, Your Input Was Invalid, Try again!");
+        });
     });
     //End Create User ---------------------------------------------------------------------
 
@@ -72,6 +70,7 @@ $(document).ready(function () {
     }
 
     searchBtn.on('click', function (e) {
+        $('.cardBody').empty();
         e.preventDefault();
         text = $('#city').val();
         console.log(text);
@@ -89,18 +88,30 @@ $(document).ready(function () {
 
         $.ajax(settings).done(function (response) {
             console.log(response);
-            let cardHolder = $('<div>').attr('class', 'card mb-3');
-            let card = $('<div>').attr('class', 'card-body');
-            let head = $('<h5>').attr('class', 'card-title');
-            let info = $('<p>').attr('class', 'card-text');
+            let count = 0;
+            for (let i = 0; i < response.length; i++) {
+                let api_city = response[i].city;
+                if (api_city.toLowerCase() === text.toLowerCase()) {
+                    let cardHolder = $('<div>').attr('class', 'card mb-3');
+                    let card = $('<div>').attr('class', 'card-body');
+                    let head = $('<h5>').attr('class', 'card-title');
+                    let info = $('<p>').attr('class', 'card-text');
 
-            head.text(response[0].name);
-            info.text('Address: ' + response[0].street + '\n' + response[0].state + ', ' +
-                response[0].postal_code + '\nPhone Number: ' + response[0].phone);
-            card.append(head);
-            card.append(info);
-            cardHolder.append(card);
-            $('.cardBody').append(cardHolder);
+                    head.text(response[i].name);
+                    info.html('Address: ' + response[i].street + '<br>' + response[i].state + ', ' +
+                        response[i].postal_code + '<br>Phone Number: ' + response[i].phone);
+                    card.append(head);
+                    card.append(info);
+                    cardHolder.append(card);
+                    $('.cardBody').append(cardHolder);
+                    count++;
+                }
+                if (count > 9) {
+                    i = response.length;
+                }
+            }
+
+
         });
         main();
     });
@@ -120,6 +131,7 @@ $(document).ready(function () {
             fail.attr('class', 'fail');
             $('.message').append(fail);
         });
+
         main();
     });
 
@@ -144,7 +156,6 @@ $(document).ready(function () {
 
     $('#lOut').on('click', function () {
         auth.signOut();
-        localStorage.setItem('signedIn', 'loggedOut');
         main();
     });
 
