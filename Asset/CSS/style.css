@@ -11,6 +11,14 @@ body{
     color: #f5deb3;
     padding-right: 20px;
 }
+.message{
+    text-align: center;
+    color: #f5deb3;
+}
+.greeting{
+    font-size: 50px;
+
+}
 
 
 
@@ -138,4 +146,6 @@ color: #f5deb3;
 /* end of css signup card */
 
 /* Javascript*/
+
+
 
