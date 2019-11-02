@@ -11,8 +11,6 @@ $(document).ready(function () {
 
     firebase.initializeApp(firebaseConfig);
 
-    const beer_api_key = "17c3124975e10863649b6ea9786a47f7";
-
     const auth = firebase.auth();
     const db = firebase.database();
 
@@ -118,14 +116,19 @@ $(document).ready(function () {
     });
 
     //Beer api ---------------
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=san%20francisco",
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "brianiswu-open-brewery-db-v1.p.rapidapi.com",
+            "x-rapidapi-key": "fb2fbd960amsh6ed3e51bfbb9c3bp10ddf5jsnc3dd4fd93ff2"
+        }
+    }
 
-    const url = `https://beermapping.com/webservice/loccity/${beer_api_key}/lyons,co`;
-
-    $.ajax({
-        method: 'GET',
-        url: url
-    }).then(data => {
-        console.log(data);
+    $.ajax(settings).done(function (response) {
+        console.log(response);
 
     });
 
