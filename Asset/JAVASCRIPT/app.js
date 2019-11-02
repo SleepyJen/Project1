@@ -99,7 +99,7 @@ $(document).ready(function () {
 
                     head.text(response[i].name);
                     info.html('Address: ' + response[i].street + '<br>' + response[i].state + ', ' +
-                        response[i].postal_code + '<br>Phone Number: ' + response[i].phone);
+                        response[i].postal_code + '<br>Phone Number: ' + response[i].phone + '<br>Website: ' + response[i].website_url);
                     card.append(head);
                     card.append(info);
                     cardHolder.append(card);
