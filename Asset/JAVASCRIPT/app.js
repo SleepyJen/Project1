@@ -27,7 +27,6 @@ $(document).ready(function () {
         }
     } else {
         $('#verification').hide();
-        $('.headerBtnContainer2').hide();
     }
 
     $('.over21').on('click', function (e) {
@@ -45,7 +44,6 @@ $(document).ready(function () {
         let dob = $('#dob').val();
         let email = $('#inputEmail').val();
         const password = $("#pwSignUp", $(".formField2")).val();
-
 
         if (firstName != null && lastName != null && email != null && password != null && dob != null) {
             auth.createUserWithEmailAndPassword(email, password).then(cred => {
@@ -96,13 +94,9 @@ $(document).ready(function () {
         $.ajax(settings).done(function (response) {
             console.log(response);
 
-            //window.location.href = ('search.html');
         });
 
     });
-
-    //var text = $('#textInput').val();
-
 
     $('#sUp').on('click', function () {
         window.location.href = ('signUp.html');
@@ -141,7 +135,6 @@ $(document).ready(function () {
 
     $('#lOut').on('click', function () {
         auth.signOut();
-        //window.location.href = ('index.html');
         logedIn = false;
         main();
     });
