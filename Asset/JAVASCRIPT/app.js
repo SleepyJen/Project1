@@ -11,6 +11,8 @@ $(document).ready(function () {
 
     firebase.initializeApp(firebaseConfig);
 
+    const beer_api_key = "17c3124975e10863649b6ea9786a47f7";
+
     const auth = firebase.auth();
     const db = firebase.database();
 
@@ -30,7 +32,7 @@ $(document).ready(function () {
         main();
     });
 
-    // Creating User
+    // Creating User ---------------------------------------------------------------------
     $('#register').on('click', function (e) {
         e.preventDefault();
 
@@ -46,15 +48,16 @@ $(document).ready(function () {
                 db.ref(lastName + firstName + dob.substring(8, 10)).set({
                     fName: firstName,
                     lName: lastName,
-                    DoB: dob
+                    DoB: dob,
+                    email: email
                 });
                 window.location.href = ('index.html');
             }).catch(function () {
                 alert("Sorry, Your Input Was Invalid, Try again!");
             });
         }
-
     });
+    //End Create User ---------------------------------------------------------------------
 
     function main() {
         $('#verification').hide();
@@ -113,5 +116,19 @@ $(document).ready(function () {
         window.location.href = ('search.html');
 
     });
+
+    //Beer api ---------------
+
+    const url = `http://beermapping.com/webservice/loccity/${beer_api_key}/lyons,co`;
+
+    $.ajax({
+        method: 'GET',
+        url: url
+    }).then(data => {
+        console.log(data);
+
+    });
+
+
 });
 
