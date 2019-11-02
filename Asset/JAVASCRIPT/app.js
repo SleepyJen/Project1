@@ -33,6 +33,13 @@ $(document).ready(function () {
     $(document).on('click', '.dropdown-item', function () {
         let text = $(this).attr('data');
         $('#Drink').html(text);
+        if (text === 'Beer') {
+            $('#searchAlc').attr('placeholder', 'Search for a Brewery');
+        } else if (text === 'Whiskey') {
+            $('#searchAlc').attr('placeholder', 'Search for a Whiskey');
+        } else if (text === 'Wine') {
+            $('#searchAlc').attr('placeholder', 'Search for a Winery');
+        }
     });
 
 
@@ -73,8 +80,20 @@ $(document).ready(function () {
         $('.cardBody').empty();
         e.preventDefault();
         text = $('#city').val();
-        console.log(text);
-        var url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`
+        let drink = $('#Drink').text();
+
+        api_search(text, "", drink);
+        main();
+    });
+
+    function api_search(text, key, choice) {
+        console.log(choice);
+
+        if (text === "") {
+            alert('Please Enter a City');
+        }
+        var url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
+
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -99,7 +118,9 @@ $(document).ready(function () {
 
                     head.text(response[i].name);
                     info.html('Address: ' + response[i].street + '<br>' + response[i].state + ', ' +
-                        response[i].postal_code + '<br>Phone Number: ' + response[i].phone + '<br>Website: ' + response[i].website_url);
+                        response[i].postal_code + '<br>Phone Number: ' + response[i].phone +
+                        "<br>Website: " + response[i].website_url);
+
                     card.append(head);
                     card.append(info);
                     cardHolder.append(card);
@@ -110,11 +131,8 @@ $(document).ready(function () {
                     i = response.length;
                 }
             }
-
-
         });
-        main();
-    });
+    }
 
     $('#sUp').on('click', function () {
         window.location.href = ('signUp.html');
