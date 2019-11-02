@@ -36,6 +36,12 @@ $(document).ready(function () {
         main();
     });
 
+    $(document).on('click', '.dropdown-item', function(){
+        let text = $(this).attr('data');
+        $('#Drink').html(text);
+    });
+
+
     // Creating User ---------------------------------------------------------------------
     $('#register').on('click', function (e) {
         e.preventDefault();
