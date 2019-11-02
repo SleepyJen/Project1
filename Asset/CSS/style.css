@@ -99,7 +99,7 @@ footer{
     color: #f5deb3;
 }
 
-.over21:hover, .under21:hover, #register:hover{
+.over21:hover, .under21:hover, .register:hover, .maybeLater:hover{
 transform: translate(-2px, -5px);
 color: #f5deb3;
 }
@@ -116,7 +116,7 @@ color: #f5deb3;
     font-size: 20px;
     text-align: center;
 }
-#register{
+.register, .maybeLater{
     background-color: rgb(94, 52, 25);
     color: #f5deb3;
     font-family: 'Playfair Display SC', serif;
