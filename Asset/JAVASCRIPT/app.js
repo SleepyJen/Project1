@@ -21,9 +21,13 @@ $(document).ready(function () {
     if (localStorage.getItem('data') != 'signedup') {
         if (!logedIn) {
             $('.headerBtnContainer').hide();
+            $('.headerBtnContainer2').hide();
+        } else {
+            $('.headerBtnContainer2').show();
         }
     } else {
         $('#verification').hide();
+        $('.headerBtnContainer2').hide();
     }
 
     $('.over21').on('click', function (e) {
@@ -65,10 +69,10 @@ $(document).ready(function () {
             $('#setup').show();
             $('.search').show();
             $('.headerBtnContainer').show();
-            $('#lOut').hide();
+            $('.headerBtnContainer2').hide();
         } else {
             $('#verification').hide();
-            $('#lOut').show();
+            $('.headerBtnContainer2').show();
         }
 
     }
@@ -77,9 +81,6 @@ $(document).ready(function () {
         e.preventDefault();
         text = $('#city').val();
         console.log(text);
-        url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
-
-
         var url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`
         var settings = {
             "async": true,
