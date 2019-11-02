@@ -27,6 +27,7 @@ $(document).ready(function () {
         }
     } else {
         $('#verification').hide();
+        $('.headerBtnContainer2').hide();
     }
 
     $('.over21').on('click', function (e) {
@@ -93,7 +94,18 @@ $(document).ready(function () {
 
         $.ajax(settings).done(function (response) {
             console.log(response);
+            let cardHolder = $('<div>').attr('class', 'card mb-3');
+            let card = $('<div>').attr('class', 'card-body');
+            let head = $('<h5>').attr('class', 'card-title');
+            let info = $('<p>').attr('class', 'card-text');
 
+            head.text(response[0].name);
+            info.text('Address: ' + response[0].street + '\n' + response[0].state + ', ' +
+                response[0].postal_code + '\nPhone Number: ' + response[0].phone);
+            card.append(head);
+            card.append(info);
+            cardHolder.append(card);
+            $('.cardBody').append(cardHolder);
         });
 
     });
