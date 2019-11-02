@@ -119,7 +119,7 @@ $(document).ready(function () {
 
     //Beer api ---------------
 
-    const url = `http://beermapping.com/webservice/loccity/${beer_api_key}/lyons,co`;
+    const url = `https://beermapping.com/webservice/loccity/${beer_api_key}/lyons,co`;
 
     $.ajax({
         method: 'GET',
