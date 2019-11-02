@@ -15,11 +15,13 @@ $(document).ready(function () {
     const db = firebase.database();
 
     var searchBtn = $('#submitButton');
+    var text = '';
+    var logedIn = false;
 
     if (localStorage.getItem('data') != 'signedup') {
-        $('.search').hide();
-        $('#setup').hide();
-        $('.headerBtnContainer').hide();
+        if (!logedIn) {
+            $('.headerBtnContainer').hide();
+        }
     } else {
         $('#verification').hide();
     }
@@ -58,18 +60,48 @@ $(document).ready(function () {
     //End Create User ---------------------------------------------------------------------
 
     function main() {
-        $('#verification').hide();
-        $('#setup').show();
-        $('.search').show();
-        $('.headerBtnContainer').show();
+        if (!logedIn) {
+            $('#verification').hide();
+            $('#setup').show();
+            $('.search').show();
+            $('.headerBtnContainer').show();
+            $('#lOut').hide();
+        } else {
+            $('#verification').hide();
+            $('#lOut').show();
+        }
+
     }
 
     searchBtn.on('click', function (e) {
         e.preventDefault();
-        let text = $('#textInput').val();
-        $('#textInput').val('');
+        text = $('#city').val();
+        console.log(text);
+        url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
+
+
+        var url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": url,
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "brianiswu-open-brewery-db-v1.p.rapidapi.com",
+                "x-rapidapi-key": "fb2fbd960amsh6ed3e51bfbb9c3bp10ddf5jsnc3dd4fd93ff2"
+            }
+        }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+
+            //window.location.href = ('search.html');
+        });
 
     });
+
+    //var text = $('#textInput').val();
+
 
     $('#sUp').on('click', function () {
         window.location.href = ('signUp.html');
@@ -83,10 +115,11 @@ $(document).ready(function () {
         auth.signInWithEmailAndPassword(sn, pw).catch(err => {
             console.log(err);
             let fail = $('<h2>').text('Sorry! ' + err.message);
-            fail.attr('class', 'greeting');
+            fail.attr('class', 'fail');
             $('.message').append(fail);
         });
-
+        logedIn = true;
+        main();
     });
 
     auth.onAuthStateChanged(user => {
@@ -107,30 +140,11 @@ $(document).ready(function () {
 
     $('#lOut').on('click', function () {
         auth.signOut();
-        window.location.href = ('index.html');
+        //window.location.href = ('index.html');
+        logedIn = false;
+        main();
     });
 
-    $('#submitButton').on('click', function () {
-        window.location.href = ('search.html');
-
-    });
-
-    //Beer api ---------------
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=san%20francisco",
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "brianiswu-open-brewery-db-v1.p.rapidapi.com",
-            "x-rapidapi-key": "fb2fbd960amsh6ed3e51bfbb9c3bp10ddf5jsnc3dd4fd93ff2"
-        }
-    }
-
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-
-    });
 
 
 });
