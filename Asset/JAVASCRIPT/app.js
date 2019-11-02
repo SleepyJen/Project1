@@ -29,7 +29,7 @@ $(document).ready(function () {
         localStorage.setItem('data', 'signedup');
         main();
     });
-
+    // Choosing a Drink!! -------------------------------------------------------------------
     $(document).on('click', '.dropdown-item', function () {
         let text = $(this).attr('data');
         $('#Drink').html(text);
@@ -41,7 +41,7 @@ $(document).ready(function () {
             $('#searchAlc').attr('placeholder', 'Search for a Winery');
         }
     });
-
+    // End of Choosing a Drink ---------------------------------------------------------------
 
     // Creating User ---------------------------------------------------------------------
     $('.register').on('click', function (e) {
@@ -81,8 +81,9 @@ $(document).ready(function () {
         e.preventDefault();
         text = $('#city').val();
         let drink = $('#Drink').text();
+        let key = $('#searchAlc').val();
 
-        api_search(text, "", drink);
+        api_search(text, key, drink);
         main();
     });
 
