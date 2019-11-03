@@ -29,6 +29,7 @@ $(document).ready(function () {
         localStorage.setItem('data', 'signedup');
         main();
     });
+
     // Choosing a Drink!! -------------------------------------------------------------------
     $(document).on('click', '.dropdown-item', function () {
         let text = $(this).attr('data');
@@ -39,6 +40,8 @@ $(document).ready(function () {
             $('#searchAlc').attr('placeholder', 'Search for a Whiskey');
         } else if (text === 'Wine') {
             $('#searchAlc').attr('placeholder', 'Search for a Winery');
+        } else if (text === 'Cocktail') {
+            $('#searchAlc').attr('placeholder', 'Enter a Alcohol (i.e Gin)');
         }
     });
     // End of Choosing a Drink ---------------------------------------------------------------
@@ -90,53 +93,88 @@ $(document).ready(function () {
     function api_search(text, key, choice) {
         console.log(choice);
         var url;
+        var api_key;
         if (text === "") {
             alert('Please Enter a City');
         }
         if (choice === "Beer") {
             url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
-        } else {
+            api_key = "fb2fbd960amsh6ed3e51bfbb9c3bp10ddf5jsnc3dd4fd93ff2";
+
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": url,
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-host": "brianiswu-open-brewery-db-v1.p.rapidapi.com",
+                    "x-rapidapi-key": api_key
+                }
+            }
+        } else if (choice === "Wine") {
+
+            $.ajax({
+                url: url,
+                dataType: 'JSON',
+                headers: {
+                    'Authorization': yelp_api_key,
+                },
+                method: 'GET https://api.yelp.com/v3/businesses/search?term=delis&latitude=37.786882&longitude=-122.399972'
+
+            }).then(data => {
+                console.log(JSON.stringify(data));
+            });
+
+        } if (choice === "Whiskey") {
+            whiskey_url = `https://api.foursquare.com/v2/venues/explore?client_id=ZXZW5OMM0JI35FNLXPVZW5LBMSZEBXPULZSHWN0RQNLRU4R2&client_secret=GDJIMCEGXSUFIGQ5ZMZR1LQJDO3V2DYM2YZ1FOM53L4EW5JG&v=20180323&limit=10&near=${text}&query=${choice}`;
+
+            $.ajax({
+                method: 'GET',
+                url: whiskey_url,
+                dataType: 'json'
+            }).then(function (data) {
+                const response = data.response;
+                console.log(data.response);
+                console.log(data.response.groups[0].items);
+                console.log(data.response.groups[0].items[0].venue.name);
+                console.log(data.response.groups[0].items[0].venue.location);
+            });
+
+        }
+
+        else {
             url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
+            api_key = "fb2fbd960amsh6ed3e51bfbb9c3bp10ddf5jsnc3dd4fd93ff2";
         }
 
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": url,
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "brianiswu-open-brewery-db-v1.p.rapidapi.com",
-                "x-rapidapi-key": "fb2fbd960amsh6ed3e51bfbb9c3bp10ddf5jsnc3dd4fd93ff2"
-            }
-        }
 
-        $.ajax(settings).done(function (response) {
-            console.log(response);
-            let count = 0;
-            for (let i = 0; i < response.length; i++) {
-                let api_city = response[i].city;
-                if (api_city.toLowerCase() === text.toLowerCase()) {
-                    let cardHolder = $('<div>').attr('class', 'card mb-3');
-                    let card = $('<div>').attr('class', 'card-body');
-                    let head = $('<h5>').attr('class', 'card-title');
-                    let info = $('<p>').attr('class', 'card-text');
+        // $.ajax(settings).done(function (response) {
+        //     console.log(JSON.stringify(response));
+        //     // let count = 0;
+        //     // for (let i = 0; i < response.length; i++) {
+        //     //     let api_city = response[i].city;
+        //     //     if (api_city.toLowerCase() === text.toLowerCase()) {
+        //     //         let cardHolder = $('<div>').attr('class', 'card mb-3');
+        //     //         let card = $('<div>').attr('class', 'card-body');
+        //     //         let head = $('<h5>').attr('class', 'card-title');
+        //     //         let info = $('<p>').attr('class', 'card-text');
 
-                    head.text(response[i].name);
-                    info.html('Address: ' + response[i].street + '<br>' + response[i].state + ', ' +
-                        response[i].postal_code + '<br>Phone Number: ' + response[i].phone +
-                        "<br>Website: " + `<a href = ${response[i].website_url}>` + response[i].website_url);
+        //     //         head.text(response[i].name);
+        //     //         info.html('Address: ' + response[i].street + '<br>' + response[i].state + ', ' +
+        //     //             response[i].postal_code + '<br>Phone Number: ' + response[i].phone +
+        //     //             "<br>Website: " + `<a href = ${response[i].website_url}>` + response[i].website_url);
 
-                    card.append(head);
-                    card.append(info);
-                    cardHolder.append(card);
-                    $('.cardBody').append(cardHolder);
-                    count++;
-                }
-                if (count > 9) {
-                    i = response.length;
-                }
-            }
-        });
+        //     //         card.append(head);
+        //     //         card.append(info);
+        //     //         cardHolder.append(card);
+        //     //         $('.cardBody').append(cardHolder);
+        //     //         count++;
+        //     //     }
+        //     //     if (count > 9) {
+        //     //         i = response.length;
+        //     //     }
+        //     // }
+        // });
     }
 
     $('#sUp').on('click', function () {
