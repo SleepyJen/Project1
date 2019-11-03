@@ -100,6 +100,7 @@ $(document).ready(function () {
         //BEER ---------------------------------------------------------------------------------
         if (choice === "Beer") {
             url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
+
             api_key = "fb2fbd960amsh6ed3e51bfbb9c3bp10ddf5jsnc3dd4fd93ff2";
 
             var settings = {
@@ -111,6 +112,7 @@ $(document).ready(function () {
                     "x-rapidapi-host": "brianiswu-open-brewery-db-v1.p.rapidapi.com",
                     "x-rapidapi-key": api_key
                 }
+
             }
 
 
@@ -176,9 +178,58 @@ $(document).ready(function () {
                     let info = $('<p>').attr('class', 'card-text');
                     let icon = $('<img>');
 
+                    head.text(response[i].name);
+                    info.html('Address: ' + response[i].street + '<br>' + response[i].state + ', ' +
+                        response[i].postal_code + '<br>Phone Number: ' + response[i].phone +
+                        "<br>Website: " + `<a href = ${response[i].website_url}>` + response[i].website_url);
+                    // var locations = [[response[i].name, response[i].latitude, response[i].longitude]];
+                    var locations = [
+                        ['21st Amendment Brewery Cafe', 37.782448, -122.3925769, 1],
+                        ['Anchor Brewing Co', 37.7630772, -122.4011065, 2],
+                        ['Barebottle Brewing Company', 37.74000915, -122.40904048683, 3],
+                        ['Barrel Head Brewhouse', 37.7757651428571, -122.446103285714, 4]];
+                    //function that initiates the map
+                    function initMap() {
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 12,
+                            center: new google.maps.LatLng(37.782448, -122.3925769),
+
+                        })
+                        //this will display an infor window when clicked on the marker
+                        var infowindow = new google.maps.InfoWindow({})
+
+                        var marker, i
+
+                        //loop through the locations - NOT working!! it only displays the last brewery, should display all
+                        for (i = 0; i < locations.length; i++) {
+                            console.log("locations", locations);
+                            console.log("locations[i]", locations[i]);
+                            console.log(locations[i][1]);
+                            console.log(locations[i][2])
+                            marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                map: map,
+                            })
+
+                            google.maps.event.addListener(
+                                marker,
+                                'click',
+                                (function (marker, i) {
+                                    return function () {
+                                        infowindow.setContent(locations[i][0])
+                                        infowindow.open(map, marker)
+                                    }
+                                })(marker, i)
+                            )
+                        }
+                    }
+
+                    initMap();
+
                     head.text(response[i].venue.name);
                     info.html('Address: ' + response[i].venue.location.address + '<br>' + response[i].venue.location.city + ' ' + response[i].venue.location.state + ', ' +
                         response[i].venue.location.postalCode + "<br>Type: " + response[i].venue.categories[0].name);
+
 
                     card.append(head);
                     card.append(info);
