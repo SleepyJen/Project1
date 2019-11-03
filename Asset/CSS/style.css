@@ -137,7 +137,6 @@ color: #f5deb3;
     background-color: rgb(94, 52, 25);
     color: #f5deb3;
     font-family: 'Playfair Display SC', serif;
-
 }
 
 .headerBtnContainer{
@@ -146,6 +145,13 @@ color: #f5deb3;
 /* end of css signup card */
 
 /* Javascript*/
+
+#map {
+    height: 75%;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20px;
+} 
 
 
 
