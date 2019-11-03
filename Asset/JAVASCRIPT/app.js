@@ -148,33 +148,33 @@ $(document).ready(function () {
         }
 
 
-        // $.ajax(settings).done(function (response) {
-        //     console.log(JSON.stringify(response));
-        //     // let count = 0;
-        //     // for (let i = 0; i < response.length; i++) {
-        //     //     let api_city = response[i].city;
-        //     //     if (api_city.toLowerCase() === text.toLowerCase()) {
-        //     //         let cardHolder = $('<div>').attr('class', 'card mb-3');
-        //     //         let card = $('<div>').attr('class', 'card-body');
-        //     //         let head = $('<h5>').attr('class', 'card-title');
-        //     //         let info = $('<p>').attr('class', 'card-text');
+        $.ajax(settings).done(function (response) {
+            console.log(JSON.stringify(response));
+            let count = 0;
+            for (let i = 0; i < response.length; i++) {
+                let api_city = response[i].city;
+                if (api_city.toLowerCase() === text.toLowerCase()) {
+                    let cardHolder = $('<div>').attr('class', 'card mb-3');
+                    let card = $('<div>').attr('class', 'card-body');
+                    let head = $('<h5>').attr('class', 'card-title');
+                    let info = $('<p>').attr('class', 'card-text');
 
-        //     //         head.text(response[i].name);
-        //     //         info.html('Address: ' + response[i].street + '<br>' + response[i].state + ', ' +
-        //     //             response[i].postal_code + '<br>Phone Number: ' + response[i].phone +
-        //     //             "<br>Website: " + `<a href = ${response[i].website_url}>` + response[i].website_url);
+                    head.text(response[i].name);
+                    info.html('Address: ' + response[i].street + '<br>' + response[i].state + ', ' +
+                        response[i].postal_code + '<br>Phone Number: ' + response[i].phone +
+                        "<br>Website: " + `<a href = ${response[i].website_url}>` + response[i].website_url);
 
-        //     //         card.append(head);
-        //     //         card.append(info);
-        //     //         cardHolder.append(card);
-        //     //         $('.cardBody').append(cardHolder);
-        //     //         count++;
-        //     //     }
-        //     //     if (count > 9) {
-        //     //         i = response.length;
-        //     //     }
-        //     // }
-        // });
+                    card.append(head);
+                    card.append(info);
+                    cardHolder.append(card);
+                    $('.cardBody').append(cardHolder);
+                    count++;
+                }
+                if (count > 9) {
+                    i = response.length;
+                }
+            }
+        });
     }
 
     $('#sUp').on('click', function () {
