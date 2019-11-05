@@ -162,6 +162,11 @@ color: #f5deb3;
 } 
 
 .content{
-    padding:20px;
+    padding:100px;
 }
 
+.mapContainer{
+    /* position: -webkit-sticky; */
+    position: sticky;
+    top:0;
+}
