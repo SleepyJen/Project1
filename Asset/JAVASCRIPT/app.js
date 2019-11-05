@@ -149,10 +149,17 @@ $(document).ready(function () {
                 // we need to fix the above logic to present the data like this one:
                 //function that initiates the map
                 function initMap() {
+                    var loc;
+                    for (let j = 0; j < locations.length; j++) {
+                        if (locations[j][1] === null || locations[j][2] === null) {
+                        } else {
+                            loc = j;
+                            j = locations.length;
+                        }
+                    }
                     var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 12,
-                        center: new google.maps.LatLng(37.782448, -122.3925769),
-
+                        center: new google.maps.LatLng(locations[loc][1], locations[loc][2]),
                     })
                     //this will display an infor window when clicked on the marker
                     var infowindow = new google.maps.InfoWindow({})
@@ -245,7 +252,7 @@ $(document).ready(function () {
                 function initMapFourSquare() {
                     var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 12,
-                        center: new google.maps.LatLng(37.782448, -122.3925769),
+                        center: new google.maps.LatLng(locations[0][1], locations[0][2]),
 
                     })
                     //this will display an infor window when clicked on the marker
