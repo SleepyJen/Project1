@@ -92,7 +92,6 @@ $(document).ready(function () {
 
     function api_search(text, key, choice) {
         var locations = [];
-        console.log(choice);
         var url;
         var api_key;
         if (text === "") {
@@ -148,7 +147,6 @@ $(document).ready(function () {
                     }
                 }
 
-                // we need to fix the above logic to present the data like this one:
                 //function that initiates the map
                 function initMap() {
                     var loc;
@@ -170,8 +168,6 @@ $(document).ready(function () {
 
                     //loop through the locations - NOT working!! it only displays the last brewery, should display all
                     for (i = 0; i < locations.length; i++) {
-                        console.log("locations", locations);
-                        console.log(locations[i][1]);
                         marker = new google.maps.Marker({
                             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                             map: map,
@@ -214,7 +210,6 @@ $(document).ready(function () {
 
         }
         else {
-            location = [];
             url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
             api_key = "fb2fbd960amsh6ed3e51bfbb9c3bp10ddf5jsnc3dd4fd93ff2";
         }
@@ -235,11 +230,13 @@ $(document).ready(function () {
                     let card = $('<div>').attr('class', 'card-body');
                     let head = $('<h5>').attr('class', 'card-title');
                     let info = $('<p>').attr('class', 'card-text');
+                    let web = website(response[i].venue.id, type);
+                    console.log(web);
+
 
                     head.text(response[i].venue.name);
                     info.html('Address: ' + response[i].venue.location.address + '<br>' + response[i].venue.location.city + ' ' + response[i].venue.location.state + ', ' +
-                        response[i].venue.location.postalCode + "<br>Type: " + response[i].venue.categories[0].name);
-
+                        response[i].venue.location.postalCode + "<br>Website: " + `<a href = ${web}>` + "<br>Type: " + response[i].venue.categories[0].name);
                     card.append(head);
                     card.append(info);
                     cardHolder.append(card);
@@ -264,8 +261,6 @@ $(document).ready(function () {
 
                     //loop through the locations - NOT working!! it only displays the last brewery, should display all
                     for (i = 0; i < locations.length; i++) {
-                        console.log("locations", locations);
-                        console.log(locations[i][1]);
                         marker = new google.maps.Marker({
                             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                             map: map,
@@ -288,6 +283,20 @@ $(document).ready(function () {
             });
 
         }
+
+        // function website(id, type) {
+        //     var link;
+        //     url = `http://opentable.herokuapp.com/api`;
+
+        //     $.ajax({
+        //         method: `GET /api/restaurants`,
+        //         url: url
+        //     }).then(data => {
+        //         console.log(data);
+        //         //link = data.response.venue.url;
+        //     });
+        //     //return link;
+        // }
     }
 
     $('#sUp').on('click', function () {
