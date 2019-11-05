@@ -20,7 +20,9 @@ body{
 
 }
 
-
+#lOut{
+    margin-right: 50px;
+}
 
 #sUp{
     margin-right: 50px;
@@ -84,7 +86,8 @@ h1{
     width: 50%;
     margin: auto;
     background-color: rgb(83, 53, 33);
-    color:  rgba(150, 115, 92, 0.849);;
+    color:  rgba(150, 115, 92, 0.849);
+
 }
 
 footer{
@@ -140,6 +143,11 @@ color: #f5deb3;
 }
 
 .headerBtnContainer{
+    padding: 10px;
+}
+
+
+.headerBtnContainer2{
     padding: 10px;
 }
 /* end of css signup card */

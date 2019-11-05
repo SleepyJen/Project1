@@ -138,6 +138,8 @@ $(document).ready(function () {
                         $('.cardBody').append(cardHolder);
                         count++;
                     }
+
+
                     if (count > 9) {
                         i = response.length;
                     }
@@ -220,7 +222,7 @@ $(document).ready(function () {
             });
         }
         //END OF WINE ---------------------------------------------------------------------------------
-        else if (choice === "Sake") {
+        else if (choice === "Cocktail") {
             let type = choice.toLowerCase();
             Sake_url = `https://api.foursquare.com/v2/venues/explore?client_id=ZXZW5OMM0JI35FNLXPVZW5LBMSZEBXPULZSHWN0RQNLRU4R2&client_secret=GDJIMCEGXSUFIGQ5ZMZR1LQJDO3V2DYM2YZ1FOM53L4EW5JG&v=20180323&limit=10&near=${text}&query=${type}`;
 
