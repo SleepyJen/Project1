@@ -83,7 +83,7 @@ h1{
 
 }
 .cardBody{
-    width: 50%;
+    width: 100%;
     margin: auto;
     background-color: rgb(83, 53, 33);
     color:  rgba(150, 115, 92, 0.849);
@@ -155,11 +155,13 @@ color: #f5deb3;
 /* Javascript*/
 
 #map {
-    height: 75%;
-    width: 80%;
+    height: 30%;
+    width: 100%;
     margin: auto;
     margin-bottom: 20px;
 } 
 
-
+.content{
+    padding:20px;
+}
 
