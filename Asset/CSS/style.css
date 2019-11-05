@@ -17,6 +17,8 @@ body{
 }
 .message{
     color: #f5deb3;
+    font-family: cursive;
+    text-align: center;
     
     /* padding: 10px; */
 }
@@ -161,7 +163,7 @@ color: #f5deb3;
 /* Javascript*/
 
 #map {
-    height: 30%;
+    height: 100%;
     width: 100%;
     margin: auto;
     margin-bottom: 20px;
@@ -172,13 +174,26 @@ color: #f5deb3;
     right: 0;
     /* padding: 2px; */
     position: absolute;
-
+}
 .content{
-    padding:100px;
+    margin-left: 5%;
+    margin-right: 5%;
+    
 }
 
 .mapContainer{
     /* position: -webkit-sticky; */
     position: sticky;
     top:0;
+
 }
+
+@media only screen and (max-width: 768px) { 
+#d{
+    height:400px;
+    
+}}
+@media only screen and (min-width: 768px) { 
+#d{
+    height:50vh;
+}}
