@@ -174,7 +174,11 @@ color: #f5deb3;
     position: absolute;
 
 .content{
-    padding:20px;
-
+    padding:100px;
 }
 
+.mapContainer{
+    /* position: -webkit-sticky; */
+    position: sticky;
+    top:0;
+}
