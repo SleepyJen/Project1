@@ -26,7 +26,9 @@ body{
 
 }
 
-
+#lOut{
+    margin-right: 50px;
+}
 
 #sUp{
     margin-right: 50px;
@@ -87,10 +89,11 @@ h1{
 
 }
 .cardBody{
-    width: 50%;
+    width: 100%;
     margin: auto;
     background-color: rgb(83, 53, 33);
-    color:  rgba(150, 115, 92, 0.849);;
+    color:  rgba(150, 115, 92, 0.849);
+
 }
 
 footer{
@@ -148,20 +151,30 @@ color: #f5deb3;
 .headerBtnContainer{
     padding: 10px;
 }
+
+
+.headerBtnContainer2{
+    padding: 10px;
+}
 /* end of css signup card */
 
 /* Javascript*/
 
 #map {
-    height: 75%;
-    width: 80%;
+    height: 30%;
+    width: 100%;
     margin: auto;
     margin-bottom: 20px;
 } 
+
 
 .fail {
     right: 0;
     /* padding: 2px; */
     position: absolute;
+
+.content{
+    padding:20px;
+
 }
 
