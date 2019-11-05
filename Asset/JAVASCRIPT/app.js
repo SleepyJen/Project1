@@ -276,9 +276,9 @@ $(document).ready(function () {
 
         auth.signInWithEmailAndPassword(sn, pw).catch(err => {
             console.log(err);
-            let fail = $('<h2>').text('Sorry! ' + err.message);
+            let fail = $('<span>').text('Sorry! ' + err.message);
             fail.attr('class', 'fail');
-            $('.message').append(fail);
+            $('.message').html(fail);
         });
 
         main();
@@ -291,7 +291,7 @@ $(document).ready(function () {
             $('#sUp').hide();
             $('#lOut').show();
             $('.fail').hide();
-            let welcome = $('<h2>').text("Welcome Back!");
+            let welcome = $('<h2>').text("Welcome");
             welcome.attr('class', 'greeting');
             $('.message').append(welcome);
         } else {
