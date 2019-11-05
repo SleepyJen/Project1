@@ -141,6 +141,8 @@ $(document).ready(function () {
                         let mapInfo = [response[i].street, response[i].latitude, response[i].longitude, i];
                         locations.push(mapInfo);
                     }
+
+
                     if (count > 9) {
                         i = response.length;
                     }
@@ -206,7 +208,7 @@ $(document).ready(function () {
             cards(type);
         }
         //END OF WINE ---------------------------------------------------------------------------------
-        else if (choice === "Sake") {
+        else if (choice === "Cocktail") {
             let type = choice.toLowerCase();
             cards(type);
 
