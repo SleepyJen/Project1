@@ -100,7 +100,6 @@ $(document).ready(function () {
         }
         //BEER ---------------------------------------------------------------------------------
         if (choice === "Beer") {
-            location = [];
             url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
 
             api_key = "fb2fbd960amsh6ed3e51bfbb9c3bp10ddf5jsnc3dd4fd93ff2";
@@ -177,7 +176,7 @@ $(document).ready(function () {
                                     infowindow.setContent(locations[i][0])
                                     infowindow.open(map, marker)
                                 }
-                            })
+                            })(marker, i)
                         )
                     }
                 }
@@ -188,7 +187,6 @@ $(document).ready(function () {
 
             //Whiskey ---------------------------------------------------------------------------------
         } else if (choice === "Whiskey") {
-            location = [];
             let type = choice.toLowerCase();
             cards(type);
 
@@ -197,7 +195,6 @@ $(document).ready(function () {
 
         //WINE ---------------------------------------------------------------------------------
         else if (choice === "Wine") {
-            location = [];
             let type = choice.toLowerCase();
             cards(type);
         }
@@ -244,7 +241,6 @@ $(document).ready(function () {
                     locations.push(mapInfo);
                 }
 
-                // we need to fix the above logic to present the data like this one:
                 //function that initiates the map
                 function initMapFourSquare() {
                     var map = new google.maps.Map(document.getElementById('map'), {
@@ -274,7 +270,7 @@ $(document).ready(function () {
                                     infowindow.setContent(locations[i][0])
                                     infowindow.open(map, marker)
                                 }
-                            })
+                            })(marker, i)
                         )
                     }
                 }
