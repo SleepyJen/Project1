@@ -4,17 +4,23 @@ body{
     background-size: cover;
     background-attachment: fixed;
     height: 100vh;
+    width: 100%;
 }
 .fail{
-    text-align: end;
+    text-align: center;
     font-size: 15px;
-    color: #f5deb3;
-    padding-right: 20px;
+    color: red;
+    background-color: pink;
+    padding-right: 10px;
+    width: 300px;
+   
 }
 .message{
-    text-align: center;
     color: #f5deb3;
+    
+    /* padding: 10px; */
 }
+
 .greeting{
     font-size: 50px;
 
@@ -160,6 +166,12 @@ color: #f5deb3;
     margin: auto;
     margin-bottom: 20px;
 } 
+
+
+.fail {
+    right: 0;
+    /* padding: 2px; */
+    position: absolute;
 
 .content{
     padding:100px;
