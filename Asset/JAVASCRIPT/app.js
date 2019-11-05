@@ -160,14 +160,12 @@ $(document).ready(function () {
                     //this will display an infor window when clicked on the marker
                     var infowindow = new google.maps.InfoWindow({})
 
-                    var marker, i
+                    var marker, i;
 
                     //loop through the locations - NOT working!! it only displays the last brewery, should display all
                     for (i = 0; i < locations.length; i++) {
                         console.log("locations", locations);
-                        console.log("locations[i]", locations[i]);
                         console.log(locations[i][1]);
-                        console.log(locations[i][2])
                         marker = new google.maps.Marker({
                             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                             map: map,
@@ -181,7 +179,7 @@ $(document).ready(function () {
                                     infowindow.setContent(locations[i][0])
                                     infowindow.open(map, marker)
                                 }
-                            })(marker, i)
+                            })//(marker, i)
                         )
                     }
                 }
@@ -191,7 +189,7 @@ $(document).ready(function () {
             //END OF BEER ---------------------------------------------------------------------------------
 
             //Whiskey ---------------------------------------------------------------------------------
-        } if (choice === "Whiskey") {
+        } else if (choice === "Whiskey") {
             let type = choice.toLowerCase();
             whiskey_url = `https://api.foursquare.com/v2/venues/explore?client_id=ZXZW5OMM0JI35FNLXPVZW5LBMSZEBXPULZSHWN0RQNLRU4R2&client_secret=GDJIMCEGXSUFIGQ5ZMZR1LQJDO3V2DYM2YZ1FOM53L4EW5JG&v=20180323&limit=10&near=${text}&query=${type}`;
 
@@ -201,40 +199,70 @@ $(document).ready(function () {
                 dataType: 'json'
             }).then(function (data) {
                 const response = data.response.groups[0].items;
-
-                console.log(response);
-
-                for (let i = 0; i < response.length; i++) {
-                    let cardHolder = $('<div>').attr('class', 'card mb-3');
-                    let card = $('<div>').attr('class', 'card-body');
-                    let head = $('<h5>').attr('class', 'card-title');
-                    let info = $('<p>').attr('class', 'card-text');
-                    let icon = $('<img>');
-
-                    head.text(response[i].name);
-                    info.html('Address: ' + response[i].street + '<br>' + response[i].state + ', ' +
-                        response[i].postal_code + '<br>Phone Number: ' + response[i].phone +
-                        "<br>Website: " + `<a href = ${response[i].website_url}>` + response[i].website_url);
-
-                    head.text(response[i].venue.name);
-                    info.html('Address: ' + response[i].venue.location.address + '<br>' + response[i].venue.location.city + ' ' + response[i].venue.location.state + ', ' +
-                        response[i].venue.location.postalCode + "<br>Type: " + response[i].venue.categories[0].name);
-
-                    card.append(head);
-                    card.append(info);
-                    cardHolder.append(card);
-
-                    $('.cardBody').append(cardHolder);
-                }
+                cards(response);
             });
 
         }
         //END OF WHISKEY ---------------------------------------------------------------------------------
+
+        //WINE ---------------------------------------------------------------------------------
+        else if (choice === "Wine") {
+            let type = choice.toLowerCase();
+            wine_url = `https://api.foursquare.com/v2/venues/explore?client_id=ZXZW5OMM0JI35FNLXPVZW5LBMSZEBXPULZSHWN0RQNLRU4R2&client_secret=GDJIMCEGXSUFIGQ5ZMZR1LQJDO3V2DYM2YZ1FOM53L4EW5JG&v=20180323&limit=10&near=${text}&query=${type}`;
+
+            $.ajax({
+                method: 'GET',
+                url: wine_url,
+                dataType: 'json'
+            }).then(function (data) {
+                const response = data.response.groups[0].items;
+                cards(response);
+            });
+        }
+        //END OF WINE ---------------------------------------------------------------------------------
+        else if (choice === "Sake") {
+            let type = choice.toLowerCase();
+            Sake_url = `https://api.foursquare.com/v2/venues/explore?client_id=ZXZW5OMM0JI35FNLXPVZW5LBMSZEBXPULZSHWN0RQNLRU4R2&client_secret=GDJIMCEGXSUFIGQ5ZMZR1LQJDO3V2DYM2YZ1FOM53L4EW5JG&v=20180323&limit=10&near=${text}&query=${type}`;
+
+            $.ajax({
+                method: 'GET',
+                url: Sake_url,
+                dataType: 'json'
+            }).then(function (data) {
+                const response = data.response.groups[0].items;
+                cards(response);
+            });
+        }
         else {
             url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
             api_key = "fb2fbd960amsh6ed3e51bfbb9c3bp10ddf5jsnc3dd4fd93ff2";
         }
 
+        function cards(response) {
+
+            for (let i = 0; i < response.length; i++) {
+                let cardHolder = $('<div>').attr('class', 'card mb-3');
+                let card = $('<div>').attr('class', 'card-body');
+                let head = $('<h5>').attr('class', 'card-title');
+                let info = $('<p>').attr('class', 'card-text');
+
+                head.text(response[i].name);
+                info.html('Address: ' + response[i].street + '<br>' + response[i].state + ', ' +
+                    response[i].postal_code + '<br>Phone Number: ' + response[i].phone +
+                    "<br>Website: " + `<a href = ${response[i].website_url}>` + response[i].website_url);
+
+                head.text(response[i].venue.name);
+                info.html('Address: ' + response[i].venue.location.address + '<br>' + response[i].venue.location.city + ' ' + response[i].venue.location.state + ', ' +
+                    response[i].venue.location.postalCode + "<br>Type: " + response[i].venue.categories[0].name);
+
+                card.append(head);
+                card.append(info);
+                cardHolder.append(card);
+
+                $('.cardBody').append(cardHolder);
+            }
+
+        }
     }
 
     $('#sUp').on('click', function () {
