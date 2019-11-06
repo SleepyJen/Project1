@@ -56,8 +56,12 @@ $(document).ready(function () {
         let email = $('#inputEmail').val();
         const password = $("#pwSignUp", $(".formField2")).val();
 
+
         auth.createUserWithEmailAndPassword(email, password).then(cred => {
-            db.ref(lastName + firstName + dob.substring(8, 10)).set({
+            let unique = auth.currentUser.uid;
+
+            //lastName + firstName + dob.substring(8, 10)
+            db.ref(unique).set({
                 fName: firstName,
                 lName: lastName,
                 DoB: dob,
@@ -327,22 +331,29 @@ $(document).ready(function () {
     });
 
     auth.onAuthStateChanged(user => {
-        if (user) {
-            console.log("signed in");
-            $('#sIn').hide();
-            $('#sUp').hide();
-            $('#lOut').show();
-            $('.fail').hide();
-            let welcome = $('<h2>').text("Welcome");
-            welcome.attr('class', 'greeting');
-            $('.message').append(welcome);
-        } else {
-            console.log("signed out");
-            $('#sIn').show();
-            $('#sUp').show();
-            $('#lOut').hide();
-            $('.greeting').hide();
-        }
+        let uid = auth.currentUser.uid;
+        var name;
+        db.ref(uid).on('value', snap => {
+            name = snap.val().fName;
+
+            if (user) {
+                console.log("signed in");
+                $('#sIn').hide();
+                $('#sUp').hide();
+                $('#lOut').show();
+                $('.fail').hide();
+
+                let welcome = $('<h2>').text("Welcome " + name);
+                welcome.attr('class', 'greeting');
+                $('.message').append(welcome);
+            } else {
+                console.log("signed out");
+                $('#sIn').show();
+                $('#sUp').show();
+                $('#lOut').hide();
+                $('.greeting').hide();
+            }
+        });
     });
 
     $('#lOut').on('click', function () {
