@@ -331,29 +331,29 @@ $(document).ready(function () {
     });
 
     auth.onAuthStateChanged(user => {
-        let uid = auth.currentUser.uid;
         var name;
-        db.ref(uid).on('value', snap => {
-            name = snap.val().fName;
-
-            if (user) {
-                console.log("signed in");
-                $('#sIn').hide();
-                $('#sUp').hide();
-                $('#lOut').show();
-                $('.fail').hide();
-
+        if (user) {
+            let uid = auth.currentUser.uid;
+            console.log("signed in");
+            $('#sIn').hide();
+            $('#sUp').hide();
+            $('#lOut').show();
+            $('.fail').hide();
+            db.ref(uid).on('value', snap => {
+                name = snap.val().fName;
                 let welcome = $('<h2>').text("Welcome " + name);
                 welcome.attr('class', 'greeting');
                 $('.message').append(welcome);
-            } else {
-                console.log("signed out");
-                $('#sIn').show();
-                $('#sUp').show();
-                $('#lOut').hide();
-                $('.greeting').hide();
-            }
-        });
+
+            });
+        }
+        else {
+            console.log("signed out");
+            $('#sIn').show();
+            $('#sUp').show();
+            $('#lOut').hide();
+            $('.greeting').hide();
+        }
     });
 
     $('#lOut').on('click', function () {
