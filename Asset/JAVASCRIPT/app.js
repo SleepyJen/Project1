@@ -84,13 +84,12 @@ $(document).ready(function () {
         e.preventDefault();
         text = $('#city').val();
         let drink = $('#Drink').text();
-        let key = $('#searchAlc').val();
 
-        api_search(text, key, drink);
+        api_search(text, drink);
         main();
     });
 
-    function api_search(text, key, choice) {
+    function api_search(text, choice) {
         var locations = [];
         var url;
         var api_key;
@@ -146,6 +145,7 @@ $(document).ready(function () {
                         i = response.length;
                     }
                 }
+                initMap();
 
                 //function that initiates the map
                 function initMap() {
@@ -171,7 +171,7 @@ $(document).ready(function () {
                         marker = new google.maps.Marker({
                             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                             map: map,
-                        })
+                        });
 
                         google.maps.event.addListener(
                             marker,
@@ -182,10 +182,9 @@ $(document).ready(function () {
                                     infowindow.open(map, marker)
                                 }
                             })(marker, i)
-                        )
+                        );
                     }
                 }
-                initMap();
             });
 
             //END OF BEER ---------------------------------------------------------------------------------
@@ -215,6 +214,7 @@ $(document).ready(function () {
         }
 
         function cards(type) {
+            var locations2 = [];
             url = `https://api.foursquare.com/v2/venues/explore?client_id=ZXZW5OMM0JI35FNLXPVZW5LBMSZEBXPULZSHWN0RQNLRU4R2&client_secret=GDJIMCEGXSUFIGQ5ZMZR1LQJDO3V2DYM2YZ1FOM53L4EW5JG&v=20180323&limit=10&near=${text}&query=${type}`;
 
             $.ajax({
@@ -230,13 +230,13 @@ $(document).ready(function () {
                     let card = $('<div>').attr('class', 'card-body');
                     let head = $('<h5>').attr('class', 'card-title');
                     let info = $('<p>').attr('class', 'card-text');
-                    let web = website(response[i].venue.id, type);
-                    console.log(web);
+                    //let web = website(response[i].venue.id, type);
+                    //console.log(web);
 
 
                     head.text(response[i].venue.name);
                     info.html('Address: ' + response[i].venue.location.address + '<br>' + response[i].venue.location.city + ' ' + response[i].venue.location.state + ', ' +
-                        response[i].venue.location.postalCode + "<br>Website: " + `<a href = ${web}>` + "<br>Type: " + response[i].venue.categories[0].name);
+                        response[i].venue.location.postalCode + "<br>Type: " + response[i].venue.categories[0].name);
                     card.append(head);
                     card.append(info);
                     cardHolder.append(card);
@@ -244,15 +244,22 @@ $(document).ready(function () {
                     $('.cardBody').append(cardHolder);
 
                     let mapInfo = [response[i].venue.location.address, response[i].venue.location.lat, response[i].venue.location.lng, i];
-                    locations.push(mapInfo);
+                    locations2.push(mapInfo);
                 }
 
                 //function that initiates the map
                 function initMapFourSquare() {
+                    var loc2;
+                    for (let j = 0; j < locations2.length; j++) {
+                        if (locations2[j][1] === null || locations2[j][2] === null) {
+                        } else {
+                            loc2 = j;
+                            j = locations2.length;
+                        }
+                    }
                     var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 14,
-                        center: new google.maps.LatLng(locations[0][1], locations[0][2]),
-
+                        zoom: 12,
+                        center: new google.maps.LatLng(locations2[loc2][1], locations2[loc2][2]),
                     })
                     //this will display an infor window when clicked on the marker
                     var infowindow = new google.maps.InfoWindow({})
@@ -260,11 +267,11 @@ $(document).ready(function () {
                     var marker, i;
 
                     //loop through the locations - NOT working!! it only displays the last brewery, should display all
-                    for (i = 0; i < locations.length; i++) {
+                    for (i = 0; i < locations2.length; i++) {
                         marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                            position: new google.maps.LatLng(locations2[i][1], locations2[i][2]),
                             map: map,
-                        })
+                        });
 
                         google.maps.event.addListener(
                             marker,
@@ -275,7 +282,7 @@ $(document).ready(function () {
                                     infowindow.open(map, marker)
                                 }
                             })(marker, i)
-                        )
+                        );
                     }
                 }
 
