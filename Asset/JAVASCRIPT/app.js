@@ -158,7 +158,7 @@ $(document).ready(function () {
                         }
                     }
                     var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 12,
+                        zoom: 11,
                         center: new google.maps.LatLng(locations[loc][1], locations[loc][2]),
                     })
                     //this will display an infor window when clicked on the marker
@@ -258,7 +258,7 @@ $(document).ready(function () {
                         }
                     }
                     var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 12,
+                        zoom: 11,
                         center: new google.maps.LatLng(locations2[loc2][1], locations2[loc2][2]),
                     })
                     //this will display an infor window when clicked on the marker
@@ -320,6 +320,7 @@ $(document).ready(function () {
             let fail = $('<span>').text('Sorry! ' + err.message);
             fail.attr('class', 'fail');
             $('.message').html(fail);
+            $(".message").hide(5000);
         });
 
         main();
