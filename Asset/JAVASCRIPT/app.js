@@ -306,7 +306,7 @@ $(document).ready(function () {
                             'click',
                             (function (marker, i) {
                                 return function () {
-                                    infowindow.setContent(response[i].venue.name)
+                                    infowindow.setContent(`<strong>${response[i].venue.name}</strong>` + '<br>' + response[i].venue.location.address)
                                     infowindow.open(map, marker)
                                 }
                             })(marker, i)
