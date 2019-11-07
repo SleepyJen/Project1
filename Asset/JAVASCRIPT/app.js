@@ -19,7 +19,7 @@ $(document).ready(function () {
     var webLink = [];
 
     if (localStorage.getItem('data') != 'signedup') {
-        $('.headerBtnContainer').show();
+        $('.headerBtnContainer').hide();
         $('.headerBtnContainer2').hide();
     } else {
         $('#verification').hide();
