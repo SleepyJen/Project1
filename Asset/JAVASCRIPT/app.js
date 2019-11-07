@@ -16,6 +16,7 @@ $(document).ready(function () {
 
     var searchBtn = $('#submitButton');
     var text = '';
+    var webLink = [];
 
     if (localStorage.getItem('data') != 'signedup') {
         $('.headerBtnContainer').show();
@@ -237,16 +238,16 @@ $(document).ready(function () {
                 dataType: 'json'
             }).then(function (data) {
                 const response = data.response.groups[0].items;
-                console.log(response);
 
                 for (let i = 0; i < response.length; i++) {
+
                     let cardHolder = $('<div>').attr('class', 'card mb-3');
                     let card = $('<div>').attr('class', 'card-body');
                     let head = $('<h5>').attr('class', 'card-title');
                     let info = $('<p>').attr('class', 'card-text');
-                    //let web = website(response[i].venue.id, type);
-                    //console.log(web);
 
+
+                    // console.log('This is the links: ', webLink[0]);
 
                     head.text(response[i].venue.name);
                     info.html('Address: ' + response[i].venue.location.address + '<br>' + response[i].venue.location.city + ' ' + response[i].venue.location.state + ', ' +
@@ -254,8 +255,11 @@ $(document).ready(function () {
                     card.append(head);
                     card.append(info);
                     cardHolder.append(card);
-
+                    card.attr('id', i);
+                    website(response[i].venue.id, type, i);
                     $('.cardBody').append(cardHolder);
+
+
 
                     let mapInfo = [response[i].venue.location.address, response[i].venue.location.lat, response[i].venue.location.lng, i];
                     locations2.push(mapInfo);
@@ -305,19 +309,21 @@ $(document).ready(function () {
 
         }
 
-        // function website(id, type) {
-        //     var link;
-        //     url = `http://opentable.herokuapp.com/api`;
+        function website(id, type, data2) {
 
-        //     $.ajax({
-        //         method: `GET /api/restaurants`,
-        //         url: url
-        //     }).then(data => {
-        //         console.log(data);
-        //         //link = data.response.venue.url;
-        //     });
-        //     //return link;
-        // }
+            url = `https://api.foursquare.com/v2/venues/${id}?client_id=ZXZW5OMM0JI35FNLXPVZW5LBMSZEBXPULZSHWN0RQNLRU4R2&client_secret=GDJIMCEGXSUFIGQ5ZMZR1LQJDO3V2DYM2YZ1FOM53L4EW5JG&v=20180323&limit=10&near=${text}&query=${type}`;
+            let website = $('<p>');
+            let site;
+            $.ajax({
+                method: 'GET',
+                url: url
+            }).then(data => {
+                webLink.push(data.response.venue.url);
+                site = data.response.venue.url;
+                website.html(`Website: <a href = ${site}>`);
+                $(`#${data2}`).append(website);
+            });
+        }
     }
 
     $('#sUp').on('click', function () {
