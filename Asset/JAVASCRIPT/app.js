@@ -156,11 +156,9 @@ $(document).ready(function () {
                         let mapInfo = [response[i].street, response[i].latitude, response[i].longitude, i];
                         locations.push(mapInfo);
                     }
-
-
-                    // if (count > 25) {
-                    //     i = response.length;
-                    // }
+                    if (count > 25) {
+                        i = response.length;
+                    }
                 }
                 initMap();
 
@@ -195,7 +193,7 @@ $(document).ready(function () {
                             'click',
                             (function (marker, i) {
                                 return function () {
-                                    infowindow.setContent(response[i].name)
+                                    infowindow.setContent(`<strong>${response[i].name}</strong>` + '<br>' + response[i].street)
                                     infowindow.open(map, marker)
                                 }
                             })(marker, i)
