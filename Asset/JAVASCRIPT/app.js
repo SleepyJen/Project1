@@ -320,7 +320,7 @@ $(document).ready(function () {
             }).then(data => {
                 webLink.push(data.response.venue.url);
                 site = data.response.venue.url;
-                website.html(`Website: <a href = ${site}>`);
+                website.html("Venue Website: " + site);
                 $(`#${data2}`).append(website);
             });
         }
