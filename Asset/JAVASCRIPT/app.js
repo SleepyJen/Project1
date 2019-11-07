@@ -94,6 +94,20 @@ $(document).ready(function () {
         main();
     });
 
+    $('#city').keypress(e => {
+        e.preventDefault();
+        if (e.keyCode == '13') {
+            $('.cardBody').empty();
+            e.preventDefault();
+            text = $('#city').val();
+            let drink = $('#Drink').text();
+
+            api_search(text, drink);
+            main();
+        }
+    });
+
+
     function api_search(text, choice) {
         var locations = [];
         var url;
@@ -376,8 +390,6 @@ $(document).ready(function () {
         auth.signOut();
         main();
     });
-
-
 
 });
 
