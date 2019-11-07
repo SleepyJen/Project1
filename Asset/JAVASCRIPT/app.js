@@ -106,7 +106,6 @@ $(document).ready(function () {
         }
     });
 
-
     function api_search(text, choice) {
         var locations = [];
         var url;
