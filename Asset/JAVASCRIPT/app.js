@@ -182,7 +182,7 @@ $(document).ready(function () {
                             'click',
                             (function (marker, i) {
                                 return function () {
-                                    infowindow.setContent(locations[i][0])
+                                    infowindow.setContent(response[i].name)
                                     infowindow.open(map, marker)
                                 }
                             })(marker, i)
@@ -194,7 +194,7 @@ $(document).ready(function () {
             //END OF BEER ---------------------------------------------------------------------------------
 
             //Whiskey ---------------------------------------------------------------------------------
-        } else if (choice === "Whiskey") {
+        } else if (choice === "Whisky") {
             let type = choice.toLowerCase();
             cards(type);
 
@@ -207,7 +207,7 @@ $(document).ready(function () {
             cards(type);
         }
         //END OF WINE ---------------------------------------------------------------------------------
-        else if (choice === "Cocktail") {
+        else if (choice === "Sake") {
             let type = choice.toLowerCase();
             cards(type);
 
@@ -282,7 +282,7 @@ $(document).ready(function () {
                             'click',
                             (function (marker, i) {
                                 return function () {
-                                    infowindow.setContent(locations[i][0])
+                                    infowindow.setContent(response[i].venue.name)
                                     infowindow.open(map, marker)
                                 }
                             })(marker, i)
