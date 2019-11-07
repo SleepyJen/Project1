@@ -334,7 +334,7 @@ $(document).ready(function () {
             let fail = $('<span>').text('Sorry! ' + err.message);
             fail.attr('class', 'fail');
             $('.message').html(fail);
-            $(".message").hide(5000);
+            setTimeout(function () { $(fail).hide(); }, 2000);
         });
 
         main();
