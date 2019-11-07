@@ -101,7 +101,7 @@ $(document).ready(function () {
             alert('Please Enter a City');
         }
         //BEER ---------------------------------------------------------------------------------
-        if (choice === "Beer") {
+        if (choice === "Brewery") {
             url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
 
             api_key = "fb2fbd960amsh6ed3e51bfbb9c3bp10ddf5jsnc3dd4fd93ff2";
@@ -145,9 +145,9 @@ $(document).ready(function () {
                     }
 
 
-                    if (count > 9) {
-                        i = response.length;
-                    }
+                    // if (count > 25) {
+                    //     i = response.length;
+                    // }
                 }
                 initMap();
 
@@ -194,7 +194,7 @@ $(document).ready(function () {
             //END OF BEER ---------------------------------------------------------------------------------
 
             //Whiskey ---------------------------------------------------------------------------------
-        } else if (choice === "Whisky") {
+        } else if (choice === "Whisky Bar") {
             let type = choice.toLowerCase();
             cards(type);
 
@@ -202,16 +202,26 @@ $(document).ready(function () {
         //END OF WHISKEY ---------------------------------------------------------------------------------
 
         //WINE ---------------------------------------------------------------------------------
-        else if (choice === "Wine") {
+        else if (choice === "Wine Bar") {
             let type = choice.toLowerCase();
             cards(type);
         }
         //END OF WINE ---------------------------------------------------------------------------------
-        else if (choice === "Sake") {
+
+        //SAKE ---------------------------------------------------------------------------------
+        else if (choice === "Sake Bar") {
             let type = choice.toLowerCase();
             cards(type);
-
         }
+        //END OF WINE ---------------------------------------------------------------------------------
+
+        //Specialty ---------------------------------------------------------------------------------
+        else if (choice === "Specialty Cocktails") {
+            let type = choice.toLowerCase();
+            cards(type);
+        }
+        //END OF SPECIALTY ---------------------------------------------------------------------------------
+
         else {
             url = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search?query=${text}`;
             api_key = "fb2fbd960amsh6ed3e51bfbb9c3bp10ddf5jsnc3dd4fd93ff2";
