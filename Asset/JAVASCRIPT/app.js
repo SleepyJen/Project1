@@ -95,7 +95,6 @@ $(document).ready(function () {
     });
 
     $('#city').keypress(e => {
-        e.preventDefault();
         if (e.keyCode == '13') {
             $('.cardBody').empty();
             e.preventDefault();
