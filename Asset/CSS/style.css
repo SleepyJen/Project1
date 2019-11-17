@@ -121,7 +121,6 @@ footer{
 }
 
 .over21:hover, .under21:hover, .register:hover, .maybeLater:hover{
-transform: translate(-2px, -5px);
 color: #f5deb3;
 }
 /* end of css for text verification card */
