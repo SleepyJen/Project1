@@ -70,7 +70,10 @@ $(document).ready(function () {
             });
             window.location.href = ('index.html');
         }).catch(function () {
-            alert("Sorry, Your Input Was Invalid, Try again!");
+            $('#invalidFormSubmission').fadeIn(1000);
+            setTimeout(function () {
+                $('#invalidFormSubmission').fadeOut(1000);
+            }, 5000);
         });
     });
     //End Create User ---------------------------------------------------------------------
